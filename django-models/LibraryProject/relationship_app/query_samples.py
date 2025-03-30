@@ -1,7 +1,7 @@
 import os
 import django
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django-models.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'LibraryProject.settings')
 django.setup()
 
 from relationship_app.models import Author, Book, Library, Librarian
@@ -17,7 +17,8 @@ def books_in_library(library_name):
 
 def librarian_of_library(library_name):
     library = Library.objects.get(name=library_name)
-    return library.librarian
+    librarian = Librarian.objects.get(library=library)
+    return librarian
 
 if __name__ == "__main__":
     author = Author.objects.create(name="J.K. Rowling")
